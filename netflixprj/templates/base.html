@@ -14,19 +14,23 @@
 <body class="bg-black text-gray-100">
     <nav class="flex justify-between items-center py-3 px-4 fixed w-full z-50">
         <div class="w-6/12">
-            <img src="{% static 'assets/netflix.png' %}" alt="logo" class="w-5/12 md:w-2/12">
+           
+            <h1 class="w-5/12 md:w-2/12">🅼🅾🆅🅸🅴 🅲🅾🆁🅽</h1>
         </div>
 
         <div>
-            {% if not request.user.is_authenticated %}
-         
-              <a href="{% url 'account_login' %}" class="signin__button">
-                logout</a>
+            {% if request.user.is_authenticated %}
+            <div class="nav__item">
+                <a href="{% url 'account_logout' %}" class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md">
+                    Logout</a>
+            </div>
             {% else %}
-
-            <a href="{% url 'account_login' %}" class="signin__button">
-                Sign in</a>
-
+            <div>
+                <div class="nav__item">
+                    <a href="{% url 'account_login' %}" class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md">
+                      Sign in</a>
+                  </div>
+            </div>
             {% endif %}
 
         </div>
@@ -38,8 +42,8 @@
         <ul class="flex justify-between items-center">
             
             <li>&copy; All Right Reserved | 2022</li>
-            <li> Netflix Clone</li>
-            <li>By: Destiny Franks - Desphixs</li>
+            <li> OTT PLATFORM</li>
+            <li>By: Vasudev</li>
         </ul>
     </footer>
 </body>

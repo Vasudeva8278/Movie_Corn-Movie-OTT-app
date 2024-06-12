@@ -2,49 +2,67 @@
 {% load static %}
 
 {% block content %}
-    <header class="min-h-screen w-full bg-black bg-opacity-75 showcase relative border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat"  style="background-image: url('assets/background_netflix.jpg');">
+    <header class="min-h-screen w-full bg-black bg-opacity-75 showcase relative border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat"  style="background-image: url('{% static 'assets/background_netflix.jpg' %}');">
         <div class="z-10 min-h-full py-32 md:py-0 text-gray-100 w-6/12  flex items-center flex-col">
-            <form class="bg-black bg-opacity-70 min-h-full py-8 px-4 w-8/12 rounded-md" >
-                <h1 class="text-4xl font-semibold text-center ">
-                    Sign Up
-                </h1>
+            <form  method="POST" style="width: 350px;" class="bg-black bg-opacity-70 py-8 px-4 w-8/12 rounded-md" >
                 <div class=" text-center my-4">
-                    <p class="text-primary_red ">
-                        Email is not valid
+                    
+                    <p class="" style="color: red;">
+                        <strong style="color: red;">
+                            {{form.errors.email}}
+                        {{form.errors.password1}}
+                        {{form.errors.password2}}
+                        </strong>
+                        
+                    
                     </p>
-                    <p class="text-primary_red ">
-                        Password does not match
-                    </p>
+                   
                 </div>
-                <div> 
-                    <Label class='text-lg font-medium mb-3'>
-                        Email
-                    </Label>
-                    <input class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full" type="email" name="email" id="id_email" placeholder="Your Email">
+                 {% csrf_token %}
+                <h1>Sign Up </h1>
+                <div class="input-text">
+                    <input required type="email" name="email" id="id_email" id="idnputEmail" name="email" placeholder="Email or phone number" class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full" />
+                    <div class="warning-input" id="warningEmail">
+                        Please enter a valid email or phone number.
+                    </div>
                 </div>
-                <div class='my-3'> 
-                    <Label class='text-lg font-medium mb-3'>
-                        Password
-                    </Label>
-                    <input class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full" type="password" name="password" id="id_password" placeholder="Password">
+                
+                <div class="input-text">
+                    <input required type="password" name="password1" id="id_password1" placeholder="Password" class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full" />
+                    <div class="warning-input" id="warningPassword">
+                        Your password must contain between 4 and 60 characters.
+                    </div>
                 </div>
-                <div class='my-3'> 
-                    <Label class='text-lg font-medium mb-3'>
-                        Confirm Password
-                    </Label>
-                    <input class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full" type="password" name="password2" id="id_password2" placeholder="Password">
+                <div class="input-text">
+                    <input required type="password" name="password2" id="id_password2" class="p-2 bg-gray-200 rounded-sm text-gray-900 outline-none block w-full"/>
+                    <div class="warning-input" id="warningPassword">
+                        Your password must contain between 4 and 60 characters.
+                    </div>
                 </div>
-                <div class="flex justify-center items-center">
-                    <button class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md">
-                        Sign Up
-                    </button>
-                </div>
+                
 
-                <div class="text-center mt-4">
-                    <p>
-                        Have account already ? <a href="login.html" class="text-blue-600"> Log In</a>
-                    </p>
+                
+                <div>
+                    <button class="py-2 px-4 bg-primary_red text-gray-100 font-medium text-lg rounded-md" type="submit" style="margin-left: 4.5rem; width: 10rem;">
+                        Sign Up</button>
                 </div>
+                <div class="remember-flex">
+                    <div>
+                        <input type="checkbox">
+                        <label class="color_text">Remember me</label>
+                    </div>
+                    <div class="help">
+                        <a class="color_text" href="#">Need help?</a>
+                    </div>
+                </div>
+                <div class="login-face">
+                    <!-- <img src="img/fb-icon.png" height="20"/><a href="#" class="color_link log_face">Login with Facebook</a> -->
+                </div>
+                <div class="new-members">
+                    <small>Have an account? <a href="{% url 'account_login' %}" class="text-blue-600"> Sign in</a></small>
+                </div>
+                
+                
             </form>
         </div>
     </header>
